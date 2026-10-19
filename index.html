@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>影響加速度的因素｜線上實驗</title>
+<style>
+:root{--bg:#f7f8fa;--card:#fff;--tx:#1d2330;--mut:#667085;--bd:#d8dce5;--ac:#2563eb;--ok:#15803d;--bad:#b91c1c;--blank:#fde68a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151c;--card:#1c212c;--tx:#e8ebf2;--mut:#98a2b3;--bd:#323949;--ac:#6ea0ff;--ok:#4ade80;--bad:#f87171;--blank:#5b4a12}}
+:root[data-theme="dark"]{--bg:#12151c;--card:#1c212c;--tx:#e8ebf2;--mut:#98a2b3;--bd:#323949;--ac:#6ea0ff;--ok:#4ade80;--bad:#f87171;--blank:#5b4a12}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.7 "PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif}
+main{max-width:1800px;margin:0 auto;padding:16px}
+h1{font-size:1.4rem;margin:.2em 0}h2{font-size:1.1rem;margin:0 0 .5em}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;margin:12px 0}
+.blank{display:inline-block;min-width:5em;padding:0 .4em;border-bottom:2px solid var(--ac);background:var(--blank);cursor:pointer;text-align:center;border-radius:4px;color:transparent;user-select:none}
+.blank.open{color:var(--tx)}
+.hint{color:var(--mut);font-size:.85rem}
+canvas{width:100%;height:auto;display:block;background:var(--card);border:1px solid var(--bd);border-radius:8px}
+.ctl{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;margin-top:10px}
+.ctl label{display:block;font-size:.9rem}
+.ctl input[type=range]{width:100%}
+button{font:inherit;padding:6px 14px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--tx);cursor:pointer}
+button.p{background:var(--ac);border-color:var(--ac);color:#fff}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}
+.read{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-top:10px}
+.read div{background:var(--bg);border-radius:8px;padding:6px 10px;font-size:.85rem;color:var(--mut)}
+.read b{display:block;font-size:1.15rem;color:var(--tx)}
+.warn{color:var(--bad);font-size:.9rem;min-height:1.5em}
+.sc{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem;min-width:520px}
+th,td{border:1px solid var(--bd);padding:4px 8px;text-align:center}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}.col{min-width:0}
+@media (max-width:900px){.two{grid-template-columns:1fr}}
+main{padding:8px 14px}
+h1{font-size:1.15rem;margin:.1em 0}h2{font-size:.98rem;margin:0 0 .3em}
+body{line-height:1.5}
+.card{padding:8px 12px;margin:8px 0}.card p{margin:.3em 0}
+.hint{font-size:.78rem}
+.hd{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px}
+input.nm{font:inherit;border:0;border-bottom:2px solid var(--ac);background:transparent;color:var(--tx);padding:0 .3em}
+@supports (field-sizing:content){input.fill{field-sizing:content;width:auto;min-width:8em}}
+.ctl{gap:6px;margin-top:6px}.row{margin-top:6px}.read{margin-top:6px}
+</style>
+</head>
+<body>
+<main>
+<h1>影響加速度的因素：線上實驗</h1>
+<p class="hint">黃色空格可點一下顯示或隱藏答案。先動手做實驗，再回頭驗證你的答案。</p>
+
+<div class="two"><div class="col">
+<div class="card">
+<h2>（1）實驗設計：探討滑車受力運動之加速度變因</h2>
+<p>滑車所受拉力來源：<span class="blank">砝碼組（秤盤與砝碼）的重量</span>。砝碼組若未懸吊，則無拉力。</p>
+<p>滑車拉力的操縱：在<span class="blank">秤盤</span>上增減砝碼。</p>
+<p>長度 X <span class="blank">≤（不大於）</span> Y：整個滑車運動過程方為等加速度運動。<br><span class="hint">X：滑車起點到滑輪的距離；Y：砝碼組起點離地的高度。</span></p>
+<p>系統總質量的操縱：在<span class="blank">滑車</span>上增減砝碼。</p>
+<p>將滑車上的砝碼取下後，直接置放於秤盤上的用意：<span class="blank" style="min-width:12em">保持系統總質量不變，只改變拉力</span>。</p>
+</div>
+
+<div class="card">
+<h2>（2）紙帶分析</h2>
+<p><b>系統總質量相同時</b></p>
+<p>當拉力增加時，不同紙帶的點距<span class="blank" style="min-width:12em">越大（A<sub>1</sub>B<sub>1</sub> ＜ A<sub>2</sub>B<sub>2</sub> ＜ A<sub>3</sub>B<sub>3</sub>）</span>。</p>
+<p>總質量相同時，物體的加速度隨外力增加而<span class="blank">增大</span>。</p>
+<p style="margin-top:1.2em"><b>系統所受拉力相同時</b></p>
+<p>當總質量增加時，不同紙帶的點距<span class="blank" style="min-width:12em">越小（A<sub>4</sub>B<sub>4</sub> ＞ A<sub>5</sub>B<sub>5</sub> ＞ A<sub>6</sub>B<sub>6</sub>）</span>。</p>
+<p>系統拉力相同時，物體的加速度隨質量增加而<span class="blank">減小</span>。</p>
+</div>
+
+<div class="card">
+<h2>（3）滑車運動討論：OQ ＞ OP = Y（砝碼組先落地）</h2>
+<p class="hint">O：滑車起點；P：砝碼組 M2 落地時滑車的位置，OP = Y；Q：滑輪處。往下的模擬中把 X 調得比 Y 大，就能觀察到。</p>
+<p>系統運動的拉力來源：<span class="blank" style="min-width:10em">砝碼組（M2）的重量</span>。</p>
+<p>運動狀態：滑車在 OP 間運動狀態：<span class="blank" style="min-width:12em">等加速度運動（M2 尚未落地，拉力不變）</span></p>
+<p style="padding-left:4.6em">滑車在 PQ 間運動狀態：<span class="blank" style="min-width:12em">等速度運動（M2 已落地，拉力消失，軌道光滑，合力為零）</span></p>
+</div>
+
+<div class="card">
+<h2>實驗記錄</h2>
+<div class="sc"><table id="tb"><thead><tr><th>次</th><th>拉力 F (gw)</th><th>總質量 M (g)</th><th>X (cm)</th><th>Y (cm)</th><th>t (s)</th><th>a (cm/s²)</th><th>X ≤ Y？</th></tr></thead><tbody></tbody></table></div>
+<div class="row"><button id="clr">清除記錄</button></div>
+<p class="hint">想一想：（a）固定總質量，拉力加倍，a 如何變化？（b）固定拉力，總質量加倍，a 如何變化？（c）用「滑車砝碼移到秤盤」的方式改變拉力，總質量有沒有變？</p>
+</div>
+</div><div class="col">
+<div class="card">
+<h2>模擬實驗（軌道光滑，忽略摩擦）</h2>
+<canvas id="cv" width="720" height="380"></canvas>
+<div class="ctl">
+<label>滑車上的砝碼：<b id="vc">0</b> 個（每個 20 gw）<input id="nc" type="range" min="0" max="10" value="4"></label>
+<label>秤盤上的砝碼：<b id="vt">0</b> 個（每個 20 gw）<input id="nt" type="range" min="0" max="10" value="1"></label>
+<label>X 滑車到滑輪距離：<b id="vx">0</b> cm<input id="X" type="range" min="20" max="100" step="5" value="90"></label>
+<label>Y 砝碼組離地高度：<b id="vy">0</b> cm<input id="Y" type="range" min="20" max="100" step="5" value="40"></label>
+<label>打點計時器頻率：<select id="hz"><option value="50">50 Hz（每 0.02 s 打一點）</option><option value="60">60 Hz（每 1/60 s 打一點）</option></select></label>
+</div>
+<div class="row">
+<button class="p" id="run">放手開始</button>
+<button id="reset">復位</button>
+<button id="mv">滑車取一個砝碼放到秤盤</button>
+<button id="cp">滑車加 1 個砝碼（拉力不變）</button>
+<button id="cm">滑車減 1 個砝碼（拉力不變）</button>
+<button id="rec">記錄這次數據</button>
+</div>
+<div class="warn" id="warn"></div>
+<div class="hint" id="cmp"></div>
+<div class="read">
+<div>拉力 F<b id="rF">-</b></div>
+<div>系統總質量 M<b id="rM">-</b></div>
+<div>時間 t<b id="rt">0.00 s</b></div>
+<div>速度 v<b id="rv">0 cm/s</b></div>
+<div>目前運動狀態<b id="ph" style="font-size:1rem">-</b></div>
+<div>量得加速度 a = 2X ÷ t²<b id="ra">-</b></div>
+</div>
+<p class="hint" style="margin-bottom:4px">紙帶（取下後）：右端接滑車，點距愈往左愈大代表愈跑愈快。紅色虛線標出 O（起點）、P（砝碼組落地處）、Q（滑輪處）。</p>
+<canvas id="tp" width="760" height="110"></canvas>
+<div class="row"><select id="md"><option value="2">兩點：量平均速度</option><option value="3">三點：量加速度（兩段點數相同）</option></select><button id="cs">清除選點</button><span class="hint">直接點紙帶上的點來選取，再點一次可取消。</span></div>
+<div class="warn" id="ta" style="color:var(--tx)"></div>
+<p class="hint">滑車質量 500 g、秤盤 20 g、每個砝碼 20 g。a 以 cm/s² 表示。紙帶固定在滑車後端，穿過打點計時器。若 X &gt; Y，砝碼組落地後拉力消失，滑車改為等速度運動，此時 2X ÷ t² 不再是真正的加速度。</p>
+</div>
+
+</div></div>
+</main>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+document.querySelectorAll('.blank').forEach(function(b){b.onclick=function(){b.classList.toggle('open')}});
+var cv=$('cv'),cx=cv.getContext('2d');
+var CART=500,TRAY=20,W=20,SX=4.2,SY=2.2,PX=600,PY=90,FLOOR=340;
+var st={run:false,t:0,d:0,v:0,done:false,dots:[],nm:0},last=0,n=0,raf=0,sel=[],lr=null;
+function TT(){return 1/+$('hz').value}
+function drawTape(){
+ var k=$('tp'),g=k.getContext('2d'),tx=css('--tx'),xr=745,sc=7;
+ g.clearRect(0,0,k.width,k.height);
+ g.fillStyle='#fcd34d';g.fillRect(10,38,xr+5,34);
+ g.fillStyle='#111';g.font='10px sans-serif';g.textAlign='center';
+ st.dots.forEach(function(s,i){var x=xr-s*sc,on=sel.indexOf(i)>=0;g.fillStyle=on?'#dc2626':'#111';g.beginPath();g.arc(x,55,on?4:2,0,7);g.fill();if(on||i%5===0)g.fillText(i,x,30)});
+ var pp=P(),mk=[['O',0]];
+ if(st.dots.length&&pp.X>pp.Y&&st.d>=pp.Y)mk.push(['P',pp.Y]);
+ if(st.done)mk.push(['Q',pp.X]);
+ if(st.dots.length){g.strokeStyle='#dc2626';g.fillStyle='#dc2626';g.lineWidth=1.5;g.font='bold 13px sans-serif';g.textAlign='center';
+  mk.forEach(function(m){var x=xr-m[1]*sc;g.setLineDash([4,3]);g.beginPath();g.moveTo(x,34);g.lineTo(x,78);g.stroke();g.setLineDash([]);g.fillText(m[0],x,90)})}
+ g.fillStyle=tx;g.textAlign='left';g.font='12px sans-serif';
+ g.fillText('共 '+st.dots.length+' 點，每點間隔 '+TT().toFixed(3)+' s（數字為第幾個點）',12,107);
+ g.textAlign='right';g.fillText('接滑車端',k.width-4,107);
+}
+function P(){return{nc:+$('nc').value,nt:+$('nt').value,X:+$('X').value,Y:+$('Y').value}}
+function calc(){var p=P();var F=TRAY+W*p.nt;var M=CART+W*p.nc+TRAY+W*p.nt;return{F:F,M:M,a:F*980/M,p:p}}
+function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
+function draw(){
+ var c=calc(),p=c.p,tx=css('--tx'),bd=css('--bd'),ac=css('--ac');
+ cx.clearRect(0,0,cv.width,cv.height);
+ var trackY=PY+30;
+ cx.strokeStyle=bd;cx.lineWidth=4;cx.beginPath();cx.moveTo(20,trackY+22);cx.lineTo(PX,trackY+22);cx.stroke();
+ cx.fillStyle=bd;cx.fillRect(PX-4,trackY+22,10,FLOOR-trackY-22+10);
+ cx.fillRect(10,FLOOR+8,cv.width-20,7);cx.fillStyle=tx;cx.font="12px sans-serif";cx.textAlign="left";cx.fillText("地面",14,FLOOR+28);
+ var cw=64,x0=PX-cw-p.X*SX,cxp=x0+st.d*SX;
+ var xT=52,ty=trackY+8;
+ cx.fillStyle='#fcd34d';cx.fillRect(10,ty-4,cxp-10,8);
+ cx.fillStyle='#111';st.dots.forEach(function(s){var xx=xT+(st.d-s)*SX;if(xx>=xT)cx.fillRect(xx-1,ty-1.5,2,3)});
+ cx.fillStyle=bd;cx.fillRect(xT-16,trackY-8,32,34);
+ cx.fillStyle=tx;cx.font='12px sans-serif';cx.textAlign='center';cx.fillText('打點計時器',xT,trackY-14);
+ cx.fillStyle=ac;cx.fillRect(cxp,trackY-6,cw,24);
+ cx.fillStyle=tx;cx.beginPath();cx.arc(cxp+14,trackY+20,5,0,7);cx.arc(cxp+cw-14,trackY+20,5,0,7);cx.fill();
+ for(var i=0;i<p.nc;i++){cx.fillStyle='#f59e0b';cx.fillRect(cxp+4+i*5.6,trackY-6-8,4.6,8)}
+ cx.fillStyle=tx;cx.beginPath();cx.arc(PX+8,PY+6,12,0,7);cx.strokeStyle=tx;cx.lineWidth=2;cx.stroke();
+ var dd=Math.min(st.d,Math.min(p.X,p.Y));
+ if(st.d>p.Y)dd=p.Y;
+ var tyTop=FLOOR+8-p.Y*SY+Math.min(st.d,p.Y)*SY-8;
+ cx.beginPath();cx.moveTo(cxp+cw,trackY+4);cx.lineTo(PX+8,PY-6);cx.stroke();
+ cx.beginPath();cx.moveTo(PX+20,PY+6);cx.lineTo(PX+20,tyTop);cx.stroke();
+ var tx0=PX+20;
+ cx.fillStyle=tx;cx.fillRect(tx0-26,tyTop,52,8);
+ for(var j=0;j<p.nt;j++){cx.fillStyle='#f59e0b';cx.fillRect(tx0-23+j*4.6,tyTop-9,4,9)}
+ cx.fillStyle=tx;cx.font='13px sans-serif';cx.textAlign='center';
+ cx.fillText('滑車 M₁',cxp+cw/2,trackY+44);cx.fillText('砝碼組 M₂',tx0-30,Math.max(tyTop-16,PY+40));
+ cx.strokeStyle=ac;cx.lineWidth=1;
+ var ax=x0+cw;cx.beginPath();cx.moveTo(x0,trackY-22);cx.lineTo(PX-4,trackY-22);cx.stroke();
+ cx.fillText('X = '+p.X+' cm（起點到滑輪）',(x0+PX)/2,trackY-28);
+ var yx=PX+46;cx.setLineDash([4,3]);cx.beginPath();cx.moveTo(tx0+26,FLOOR+8-p.Y*SY);cx.lineTo(yx,FLOOR+8-p.Y*SY);cx.stroke();cx.setLineDash([]);cx.beginPath();cx.moveTo(yx,FLOOR+8-p.Y*SY);cx.lineTo(yx,FLOOR+8);cx.stroke();
+ cx.textAlign='left';cx.font='12px sans-serif';cx.fillText('Y='+p.Y+'cm',yx+5,FLOOR+8-p.Y*SY/2);
+ var fx=x0+cw,oy=trackY+62,lb=[['O',0]];
+ if(p.Y<p.X)lb.push(['P',p.Y]);lb.push(['Q',p.X]);
+ cx.fillStyle=tx;cx.textAlign='center';cx.font='14px sans-serif';
+ lb.forEach(function(q){var lx=fx+q[1]*SX;cx.fillRect(lx-1,trackY+26,2,8);cx.fillText(q[0],lx,oy)});
+ var ph=!(st.run||st.done)?'-':(p.Y>=p.X?'OQ 全程：等加速度運動':(st.d<p.Y?'OP 間：等加速度運動':'PQ 間：等速度運動'));
+ $('ph').textContent=ph;
+ drawTape();
+}
+function ui(){
+ var c=calc(),p=c.p;
+ $('vc').textContent=p.nc;$('vt').textContent=p.nt;$('vx').textContent=p.X;$('vy').textContent=p.Y;
+ $('rF').textContent=c.F+' gw';$('rM').textContent=c.M+' g';
+ $('warn').textContent=p.X>p.Y?'注意：X > Y，砝碼組會先落地，滑車後半段不是等加速度運動。':'';
+ if(lr){var sf=c.F===lr.F,sm=c.M===lr.M;$('cmp').textContent='與上一筆記錄比較：拉力'+(sf?'相同':'不同')+'、總質量'+(sm?'相同':'不同')+(sf&&!sm?'（只改變總質量）':(!sf&&sm?'（只改變拉力）':''))}else $('cmp').textContent='';
+}
+function reset(){cancelAnimationFrame(raf);st={run:false,t:0,d:0,v:0,done:false,dots:[],nm:0};sel=[];ana();$('rt').textContent='0.00 s';$('rv').textContent='0 cm/s';$('ra').textContent='-';ui();draw()}
+function S(t,a,X,Y){var m=Math.min(X,Y),t1=Math.sqrt(2*m/a),v1=a*t1;if(t<=t1)return{s:.5*a*t*t,v:a*t};if(X<=Y)return{s:X,v:v1};return{s:Y+v1*(t-t1),v:v1}}
+function step(ts){
+ if(!st.run)return;var dt=Math.min((ts-last)/1000,.05);last=ts;
+ var c=calc(),p=c.p,a=c.a,t1=Math.sqrt(2*Math.min(p.X,p.Y)/a),v1=a*t1,te=p.X<=p.Y?t1:t1+(p.X-p.Y)/v1,T=TT();
+ st.t=Math.min(st.t+dt,te);var r=S(st.t,a,p.X,p.Y);st.d=r.s;st.v=r.v;
+ while(st.nm*T<=st.t+1e-9){st.dots.push(S(st.nm*T,a,p.X,p.Y).s);st.nm++}
+ if(st.t>=te){
+  st.run=false;st.done=true;
+  $('ra').textContent=p.X>p.Y?'不適用（X > Y）':(2*p.X/(st.t*st.t)).toFixed(1)+' cm/s²';
+ }
+ $('rt').textContent=st.t.toFixed(2)+' s';$('rv').textContent=st.v.toFixed(0)+' cm/s';
+ draw();if(st.run)raf=requestAnimationFrame(step);
+}
+$('run').onclick=function(){reset();st.run=true;last=performance.now();raf=requestAnimationFrame(step)};
+$('reset').onclick=reset;
+$('mv').onclick=function(){var a=$('nc'),b=$('nt');if(+a.value>0&&+b.value<10){a.value=+a.value-1;b.value=+b.value+1;reset()}};
+$('rec').onclick=function(){
+ if(!st.done){$('warn').textContent='請先完成一次實驗，再記錄數據。';return}
+ var c=calc(),p=c.p;n++;lr={F:c.F,M:c.M};setTimeout(ui,0);
+ var tr=document.createElement('tr'),ok=p.X<=p.Y;
+ [n,c.F,c.M,p.X,p.Y,st.t.toFixed(2),p.X>p.Y?'不適用':(2*p.X/(st.t*st.t)).toFixed(1),ok?'是':'否'].forEach(function(v){var td=document.createElement('td');td.textContent=v;tr.appendChild(td)});
+ $('tb').tBodies[0].appendChild(tr);
+};
+$('clr').onclick=function(){$('tb').tBodies[0].innerHTML='';n=0};
+function ana(){
+ var m=+$('md').value,s=sel.slice().sort(function(a,b){return a-b}),T=TT(),o=$('ta');
+ if(s.length<m){o.textContent='請在紙帶上選取 '+m+' 個點（已選 '+s.length+' 個）。';return}
+ var D=st.dots;
+ if(m===2){var dx=D[s[1]]-D[s[0]],dt=(s[1]-s[0])*T;o.textContent='Δx = '+dx.toFixed(2)+' cm，Δt = '+dt.toFixed(3)+' s，平均速度 v = Δx ÷ Δt = '+(dx/dt).toFixed(1)+' cm/s';return}
+ if(s[1]-s[0]!==s[2]-s[1]){o.textContent='兩段的點數要相同（現為 '+(s[1]-s[0])+' 段與 '+(s[2]-s[1])+' 段），請重選。';return}
+ var h=(s[1]-s[0])*T,v1=(D[s[1]]-D[s[0]])/h,v2=(D[s[2]]-D[s[1]])/h;
+ o.textContent='v1 = '+v1.toFixed(1)+' cm/s，v2 = '+v2.toFixed(1)+' cm/s，Δt = '+h.toFixed(3)+' s，加速度 a = (v2 − v1) ÷ Δt = '+((v2-v1)/h).toFixed(1)+' cm/s²';
+}
+$('tp').onclick=function(e){
+ var k=this,r=k.getBoundingClientRect(),x=(e.clientX-r.left)*k.width/r.width,b=-1,bd=1e9;
+ st.dots.forEach(function(s,i){var d=Math.abs(745-s*7-x);if(d<bd){bd=d;b=i}});
+ if(b<0||bd>12)return;
+ var q=sel.indexOf(b);if(q>=0)sel.splice(q,1);else{if(sel.length>=+$('md').value)sel=[];sel.push(b)}
+ ana();drawTape();
+};
+$('cp').onclick=function(){var a=$('nc');if(+a.value<10){a.value=+a.value+1;reset()}};
+$('cm').onclick=function(){var a=$('nc');if(+a.value>0){a.value=+a.value-1;reset()}};
+$('md').onchange=function(){sel=[];ana();drawTape()};
+$('cs').onclick=function(){sel=[];ana();drawTape()};
+['nc','nt','X','Y','hz'].forEach(function(i){$(i).oninput=reset});
+function fit(){
+ var b=document.body;
+ if(innerWidth<900){b.style.zoom='';return}
+ var z=1;b.style.zoom=1;
+ while(z>0.45&&document.documentElement.scrollHeight>innerHeight+1){z=Math.round((z-0.05)*100)/100;b.style.zoom=z}
+}
+var ft=0;function sched(){cancelAnimationFrame(ft);ft=requestAnimationFrame(fit)}
+addEventListener('resize',sched);
+if(window.ResizeObserver)new ResizeObserver(sched).observe(document.querySelector('main'));
+sched();
+reset();
+})();
+</script>
+</body>
+</html>
