@@ -168,12 +168,12 @@ function draw(){
  cx.fillStyle=ac;cx.fillRect(cxp,trackY-6,cw,24);
  cx.fillStyle=tx;cx.beginPath();cx.arc(cxp+14,trackY+20,5,0,7);cx.arc(cxp+cw-14,trackY+20,5,0,7);cx.fill();
  for(var i=0;i<p.nc;i++){cx.fillStyle='#f59e0b';cx.fillRect(cxp+4+i*5.6,trackY-6-8,4.6,8)}
- cx.fillStyle=tx;cx.beginPath();cx.arc(PX+8,PY+6,12,0,7);cx.strokeStyle=tx;cx.lineWidth=2;cx.stroke();
+ var pcy=trackY+10;cx.fillStyle=tx;cx.beginPath();cx.arc(PX+8,pcy,12,0,7);cx.strokeStyle=tx;cx.lineWidth=2;cx.stroke();
  var dd=Math.min(st.d,Math.min(p.X,p.Y));
  if(st.d>p.Y)dd=p.Y;
  var tyTop=FLOOR+8-p.Y*SY+Math.min(st.d,p.Y)*SY-8;
- cx.beginPath();cx.moveTo(cxp+cw,trackY+4);cx.lineTo(PX+8,PY-6);cx.stroke();
- cx.beginPath();cx.moveTo(PX+20,PY+6);cx.lineTo(PX+20,tyTop);cx.stroke();
+ cx.beginPath();cx.moveTo(cxp+cw,pcy-12);cx.lineTo(PX+8,pcy-12);cx.stroke();
+ cx.beginPath();cx.moveTo(PX+20,pcy);cx.lineTo(PX+20,tyTop);cx.stroke();
  var tx0=PX+20;
  cx.fillStyle=tx;cx.fillRect(tx0-26,tyTop,52,8);
  for(var j=0;j<p.nt;j++){cx.fillStyle='#f59e0b';cx.fillRect(tx0-23+j*4.6,tyTop-9,4,9)}
